@@ -6,7 +6,7 @@ Hash::Hash()
 	{
 		m_HashTable[i]			= new Item();
 		m_HashTable[i]->Key		= "";
-		m_HashTable[i]->Data	= "";
+		m_HashTable[i]->Data	= nullptr;
 		m_HashTable[i]->next	= nullptr;
 	}
 }
@@ -68,7 +68,7 @@ int Hash::NumItemsInIndex(int index)
 	return count;
 }
 
-bool Hash::AddItem(string _Key, string _Data)
+bool Hash::AddItem(string _Key, void* _Data)
 {
 	int index = HashFunction(_Key);
 	Item* item = m_HashTable[index];
@@ -95,7 +95,7 @@ bool Hash::AddItem(string _Key, string _Data)
 	return true;
 }
 
-string Hash::FindItem(string Key)
+void* Hash::FindItem(string Key)
 {
 	int index = HashFunction(Key);
 
@@ -110,7 +110,7 @@ string Hash::FindItem(string Key)
 		item = item->next;
 	}
 
-	return "Not Found!";
+	return nullptr;
 }
 
 bool Hash::RemoveItem(string Key)
@@ -129,7 +129,7 @@ bool Hash::RemoveItem(string Key)
 	else if( item->Key == Key && item->next == nullptr )
 	{
 		item->Key	= "";
-		item->Data	= "";
+		item->Data	= nullptr;
 	}
 	else if (item->Key == Key)
 	{
@@ -164,26 +164,4 @@ bool Hash::RemoveItem(string Key)
 	return true;
 }
 
-bool Hash::PrintTable()
-{
-	cout << "---------------------" << endl;
-	for (int i = 0; i < m_TableSize; i++)
-	{
-		Item* item = m_HashTable[i];
 
-		int items = NumItemsInIndex(i);
-
-		if (item->Key != "")
-		{
-			cout << "Index: " << i << " Count: " << items << " ---> " << item->Key << " ";
-			for (int i = 0; i < items; i++)
-			{
-				cout << item->Data << ", ";
-				item = item->next;
-			}
-			cout << endl;
-		}
-	}
-
-	return true;
-}

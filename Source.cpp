@@ -7,21 +7,21 @@ int main()
 {
 	Hash* h = new Hash();
 
-	h->AddItem("paul", "punch");
-	h->AddItem("paul", "phyonix");
-	h->AddItem("jin", "kick");
-	h->AddItem("eddy", "twist");
-	h->AddItem("eddy", "Leg");
-	h->AddItem("eddy", "split");
-	h->AddItem("xiaou", "arm");
+	h->AddItem("paul", (void*)"punch");
+	h->AddItem("paul", (void*)"phyonix");
+	h->AddItem("jin", (void*)"kick");
+	h->AddItem("eddy", (void*)"twist");
+	h->AddItem("eddy", (void*)"Leg");
+	h->AddItem("eddy", (void*)"split");
+	h->AddItem("xiaou", (void*)"arm");
 
-	h->PrintTable();
+	h->PrintTable<char>();
 
 	h->RemoveItem("eddy");
 	h->RemoveItem("eddy");
 	h->RemoveItem("eddy");
 
-	h->PrintTable();
+	h->PrintTable<char>();
 
 	delete h;
 
